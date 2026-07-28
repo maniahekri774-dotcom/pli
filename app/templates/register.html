@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ثبت نام | PLI</title>
+</head>
+
+
+<body>
+
+<h2>ساخت حساب جدید</h2>
+
+
+<form method="POST">
+
+
+<label>
+نام
+</label>
+
+<input type="text" name="first_name" required>
+
+
+<br>
+
+
+<label>
+نام خانوادگی
+</label>
+
+<input type="text" name="last_name" required>
+
+
+<br>
+
+
+<label>
+ایمیل
+</label>
+
+<input type="email" name="email" required>
+
+
+<br>
+
+
+<label>
+رمز عبور
+</label>
+
+<input type="password" name="password" required>
+
+
+<br>
+
+
+<button type="submit">
+ثبت نام
+</button>
+
+
+</form>
+
+
+<p>
+حساب دارید؟
+
+<a href="{{ url_for('auth.login') }}">
+ورود
+</a>
+
+</p>
+
+
+</body>
+</html>
