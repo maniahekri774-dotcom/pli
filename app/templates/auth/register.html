@@ -3,75 +3,128 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ثبت نام | PLI</title>
+    <title>Register</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-box {
+            background: white;
+            width: 380px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #15803d;
+        }
+
+        .flash {
+            color: red;
+            text-align: center;
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
-<h2>ساخت حساب جدید</h2>
+<div class="register-box">
+
+    <h2>ساخت حساب</h2>
 
 
-<form method="POST">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
 
-<label>
-نام
-</label>
+    <form method="POST">
 
-<input type="text" name="first_name" required>
+        {{ csrf_token() }}
 
 
-<br>
+        <input
+            type="text"
+            name="first_name"
+            placeholder="نام"
+            required
+        >
 
 
-<label>
-نام خانوادگی
-</label>
-
-<input type="text" name="last_name" required>
-
-
-<br>
+        <input
+            type="text"
+            name="last_name"
+            placeholder="نام خانوادگی"
+            required
+        >
 
 
-<label>
-ایمیل
-</label>
-
-<input type="email" name="email" required>
-
-
-<br>
+        <input
+            type="email"
+            name="email"
+            placeholder="ایمیل"
+            required
+        >
 
 
-<label>
-رمز عبور
-</label>
-
-<input type="password" name="password" required>
-
-
-<br>
+        <input
+            type="password"
+            name="password"
+            placeholder="رمز عبور"
+            required
+        >
 
 
-<button type="submit">
-ثبت نام
-</button>
+        <button type="submit">
+            ثبت نام
+        </button>
 
 
-</form>
+    </form>
 
 
-<p>
-حساب دارید؟
-
-<a href="{{ url_for('auth.login') }}">
-ورود
-</a>
-
-</p>
-
+</div>
 
 </body>
+
 </html>
