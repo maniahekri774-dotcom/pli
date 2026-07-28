@@ -1,8 +1,105 @@
 <!doctype html>
-<html>
-<head><title>{{ site_name }}</title></head>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_name }}</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Tahoma, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            font-size: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            width: 250px;
+            box-shadow: 0 5px 20px #ddd;
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #2a5298;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #222;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
 <body>
-  <h1>{{ site_name }}</h1>
-  <p>It's alive. Replace this template with your real homepage.</p>
+
+<header>
+    <h1>{{ site_name }}</h1>
+    <p>آموزش زبان با روش‌های مدرن و حرفه‌ای</p>
+</header>
+
+<div class="container">
+
+    <h2 style="text-align:center;">دوره‌های ما</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>English</h2>
+            <p>دوره‌های مکالمه و گرامر زبان انگلیسی</p>
+        </div>
+
+        <div class="card">
+            <h2>German</h2>
+            <p>یادگیری زبان آلمانی از پایه</p>
+        </div>
+
+        <div class="card">
+            <h2>French</h2>
+            <p>آموزش زبان فرانسوی با اساتید حرفه‌ای</p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © Persian Language Institute
+</footer>
+
 </body>
 </html>
