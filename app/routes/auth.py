@@ -5,15 +5,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.extensions import db
 from app.models.user import User
 
-auth = Blueprint("auth", __name__, url_prefix="/auth")
+
+auth_bp = Blueprint(
+    "auth",
+    __name__,
+    url_prefix="/auth"
+)
 
 
-@auth.route("/register", methods=["GET", "POST"])
+@auth_bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
 
         existing_user = User.query.filter_by(email=email).first()
 
@@ -22,9 +28,10 @@ def register():
             return redirect(url_for("auth.register"))
 
         user = User(
-            username=username,
             email=email,
-            password_hash=generate_password_hash(password)
+            password_hash=generate_password_hash(password),
+            first_name=first_name,
+            last_name=last_name
         )
 
         db.session.add(user)
@@ -36,7 +43,7 @@ def register():
     return render_template("auth/register.html")
 
 
-@auth.route("/login", methods=["GET", "POST"])
+@auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         email = request.form.get("email")
@@ -48,6 +55,7 @@ def login():
             login_user(user)
 
             flash("ورود موفق بود.", "success")
+
             return redirect(url_for("main.index"))
 
         flash("ایمیل یا رمز عبور اشتباه است.", "danger")
@@ -55,9 +63,11 @@ def login():
     return render_template("auth/login.html")
 
 
-@auth.route("/logout")
+@auth_bp.route("/logout")
 @login_required
 def logout():
     logout_user()
-    flash("خارج شدید.", "success")
+
+    flash("با موفقیت خارج شدید.", "success")
+
     return redirect(url_for("auth.login"))
